@@ -5,7 +5,7 @@ export default function _h(method, url, payload) {
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onload = () => 
       xhr.status >= 300
-        ? reject(xhr.statusText)
+        ? reject(xhr.responseText ? JSON.parse(xhr.responseText) : xhr.responseText)
         : resolve(xhr.responseText ? JSON.parse(xhr.responseText) : xhr.responseText)
     
     xhr.onerror = () => reject(xhr.statusText);
